@@ -1,5 +1,5 @@
 pxw3pe:
-  build: pxw3pe
+  build: .
   cap_add:
    - SYS_ADMIN
    - SYS_RAWIO
