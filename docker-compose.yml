@@ -1,0 +1,11 @@
+pxw3pe:
+  build: pxw3pe
+  cap_add:
+   - SYS_ADMIN
+   - SYS_RAWIO
+  container_name: pxw3pe
+  devices:
+   - /dev/asv52200:/dev/asv52200
+   - /dev/asv52201:/dev/asv52201
+   - /dev/asv52202:/dev/asv52202
+   - /dev/asv52203:/dev/asv52203
