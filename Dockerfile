@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.15
 LABEL maintainer "yanbe <y.yanbe@gmail.com>"
 
 RUN set -x \
@@ -12,13 +12,14 @@ RUN set -x \
 		gcc \
 		g++ \
 		make \
+		patch \
 	\
 	# get foltia's recpt1 and generate patch
 	&& mkdir /tmp/recpt1-original \
-	&& curl http://aniloc.foltia.com/opensource/recpt1/{pt1-b14397800eae.tar.bz2} --output "/tmp/#1" \
-	&& tar -jxvf /tmp/pt1-b14397800eae.tar.bz2 --strip-components 1 --directory /tmp/recpt1-original \
-	&& cp -r /tmp/recpt1-original /tmp/recpt1-foltia \
-	&& curl http://aniloc.foltia.com/opensource/recpt1/{Makefile.in,pt1_dev.h,recpt1.h,recpt1.c} --output "/tmp/recpt1-foltia/recpt1/#1" \
+	&& curl http://aniloc.foltia.com/opensource/recpt1/{recpt1-STZ-20170806.zip} --output "/tmp/#1" \
+	&& unzip /tmp/recpt1-STZ-20170806.zip -d /tmp \
+	&& cp -r /tmp/recpt1-master /tmp/recpt1-foltia \
+	&& curl http://aniloc.foltia.com/opensource/recpt1/recpt1/{Makefile.in,pt1_dev.h,recpt1.h,recpt1.c} --output "/tmp/recpt1-foltia/recpt1/#1" \
 	&& diff -u /tmp/recpt1-original/recpt1 /tmp/recpt1-foltia/recpt1 > /tmp/recpt1-foltia.patch \
 	|| : \
 	\
